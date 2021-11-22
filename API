@@ -1,0 +1,1093 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "AWS_APIGATEWAY",
+    "termsOfService": "http://en.wikipedia.org/wiki/Terms_of_service"
+  },
+  "host": "localhost",
+  "basePath":"/api",
+  "schemes": ["https"],
+  "x-amazon-apigateway-request-validators": {
+    "body-only": {
+      "validateRequestBody": true,
+      "validateRequestParameters": false
+    },
+    "nothing": {
+      "validateRequestBody": false,
+      "validateRequestParameters": false
+    }
+  },
+  "x-amazon-apigateway-request-validator": "nothing",
+  "paths": {
+    "/empresa": {
+      "get":{
+        "tags":["Empresa"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna las empresas registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/EmpresaRespuesta"
+                
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Empresa"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionEmpresa"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/EmpresaRespuesta"
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "tags": ["Empresa"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmpresaRespuesta"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/EmpresaRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/empresa/{id_empresa}" :{
+      "get":{
+        "tags" :["Empresa"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "name": "id_empresa",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "description": "Retorna la empresa asociada al {id}",
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/EmpresaRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/agente":{
+      "get":{
+        "tags":["Agente"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los agentes registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/AgenteRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Agente"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionAgente"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/AgenteRespuesta"
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        },
+      },
+      "put":{
+        "tags": ["Agente"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AgenteRespuesta"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/AgenteRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/agente/{id_agente}" :{
+      "get":{
+        "tags" :["Agente"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "name": "id_agente",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "description": "Retorna el agente asociado al {id}",
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/AgenteRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/tutorial":{
+      "get":{
+        "tags":["Tutorial"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los tutoriales registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/TutorialRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tutorial"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionTutorial"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/TutorialRespuesta"
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        },
+      },
+      "put":{
+        "tags": ["Tutorial"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TutorialRespuesta"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/TutorialRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/tutorial/{id_tutorial}" :{
+      "get":{
+        "tags" :["Tutorial"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "name": "id_tutorial",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "description": "Retorna el tutorial asociado al {id}",
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/TutorialRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/calificacion":{
+      "post": {
+        "tags": ["Calificacion"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionCalificacion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/CalificacionRespuesta"
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        },
+      },
+    },
+    "/calificacion/tutorial/{id_tutorial}" :{
+      "get":{
+        "tags" :["Calificacion"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "name": "id_tutorial",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "description": "Retorna las calificaciones asociadas al {id} del tutorial",
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/CalificacionRespuesta"
+            }
+          }  
+        }
+      },
+    },
+    "/solicitud":{
+      "post": {
+        "tags": ["Solicitud"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionSolicitud"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/SolicitudRespuesta"
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        },
+      },
+      "get":{
+        "tags":["Solicitud"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los tutoriales registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/SolicitudRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+    },
+    "/solicitud/empresa/encontrarPorNit" :{
+      "get":{
+        "tags" :["Solicitud"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "name": "id_empresa",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "description": "Retorna las solicitudes asociadas al {id} de la empresa",
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/SolicitudRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/solicitud/estado" :{
+      "put":{
+        "tags": ["Solicitud"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SolicitudRespuesta"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/SolicitudRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/solicitud/agente" :{
+      "put":{
+        "tags": ["Solicitud"],
+        "parameters" : [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "EmpresaPost",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SolicitudRespuesta"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "successful operation",
+            "schema": {
+              "$ref":"#/definitions/SolicitudRespuesta"
+              
+            }
+          }  
+        }
+      },
+    },
+    "/area":{
+      "get":{
+        "tags":["Area"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los tutoriales registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/AreaRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+    },
+    "/click":{
+      "post": {
+        "tags": ["Click"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default":""
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creacionClick"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        },
+      },
+    },
+    "/solicitudxarea/encontrarPorFecha":{
+      "get":{
+        "tags":["Solicitud por area"],
+        "parameters" : [
+          {
+            "name": "fecha",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los tutoriales registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/SolicitudXAreaRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+    },
+    "/metricasxtutorial/encontrarPorFecha":{
+      "get":{
+        "tags":["Metricas por tutorial"],
+        "parameters" : [
+          {
+            "name": "fecha",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "default":""
+          },
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/json;charset=UTF-8"],
+        "description": "Retorna los tutoriales registrados",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "type" : "array",
+              "items" : {
+                "$ref": "#/definitions/SolicitudXAreaRespuesta"
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "type": "string",
+                "description": "Content-Type",
+                "default":"application/json"
+              }
+            }
+          }
+        }
+      },
+    },
+  },
+  "definitions": {
+    "creacionClick": {
+      "type": "object",
+      "required": [
+        "valor",
+        "reseña",
+        "id_tutorial",
+        "id_empresa",
+      ],
+      
+      "properties": {
+        "id_tutorial": {
+          "type": "number"
+        },
+        "id_empresa": {
+          "type": "number"
+        },
+      }
+    },
+    "creacionSolicitud": {
+      "type": "object",
+      "required": [
+        "valor",
+        "reseña",
+        "id_tutorial",
+        "id_empresa",
+      ],
+      
+      "properties": {
+        "caso" :{
+          "type": "string"
+        },
+        "estado" :{
+          "type": "string"
+        },
+        "id_agente": {
+          "type": "number"
+        },
+        "id_empresa": {
+          "type": "number"
+        },
+        "id_area": {
+          "type": "number"
+        }
+      }
+    },
+    "creacionCalificacion": {
+      "type": "object",
+      "required": [
+        "valor",
+        "reseña",
+        "id_tutorial",
+        "id_empresa",
+      ],
+      
+      "properties": {
+        "valor": {
+          "type": "number"
+        },
+        "reseña": {
+          "type": "string"
+        },
+        "id_tutorial": {
+          "type": "number"
+        },
+        "id_empresa": {
+          "type": "number"
+        },
+      }
+    },
+    "creacionTutorial": {
+      "type": "object",
+      "required": [
+        "titulo",
+        "descripcion",
+        "calificacion",
+        "estado",
+      ],
+      
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "calificacion": {
+          "type": "number"
+        },
+        "estado": {
+          "type": "string"
+        },
+      }
+    },
+    "creacionEmpresa": {
+      "type": "object",
+      "required": [
+        "nit",
+        "nombre",
+        "celular",
+        "correo",
+        "password"
+      ],
+      
+      "properties": {
+        "nit": {
+          "type": "number"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "celular": {
+          "type": "number"
+        },
+        "correo": {
+          "type": "string"
+        },
+        "clave": {
+          "type": "string"
+        }
+      }
+    },
+    "creacionAgente": {
+      "type": "object",
+      "required": [
+        "nombre",
+        "apellido",
+        "correo",
+        "estado"
+      ],
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "correo": {
+          "type": "string"
+        },
+        "estado": {
+          "type": "string"
+        }
+      }
+    },
+    "EmpresaRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "nombre" :{
+          "type": "string"
+        },
+        "nit" :{
+          "type": "number"
+        },
+        "correo" : {
+          "type" : "string"
+        },
+        "celular" : {
+          "type" : "number"
+        },
+        "licencia" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AgenteRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "nombre" :{
+          "type": "string"
+        },
+        "apellido" :{
+          "type": "string"
+        },
+        "correo" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TutorialRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "titulo" :{
+          "type": "string"
+        },
+        "descripcion" :{
+          "type": "string"
+        },
+        "calificacion" : {
+          "type" : "number"
+        },
+        "estado" : {
+          "type" : "number"
+        },
+      }
+    },
+    "CalificacionRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "valor" :{
+          "type": "number"
+        },
+        "reseña" :{
+          "type": "string"
+        },
+        "id_tutorial" : {
+          "type" : "number"
+        },
+        "empresa" : {
+          "type" : "object",
+          "properties":{
+            "nombre":{
+              "type":"string"
+            }
+          }
+        },
+      }
+    },
+    "SolicitudRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "caso" :{
+          "type": "string"
+        },
+        "estado" :{
+          "type": "string"
+        },
+        "agente" : {
+          "type" : "object",
+          "properties":{
+            "nombre":{
+              "type":"string"
+            }
+          }
+        },
+        "empresa" : {
+          "type" : "object",
+          "properties":{
+            "nit": {
+              "type":"number"
+            },
+            "nombre":{
+              "type":"string"
+            }
+          }
+        },
+        "area" : {
+          "type" : "object",
+          "properties":{
+            "nombre":{
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+    "AreaRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "nombre" :{
+          "type": "string"
+        },
+        
+      }
+    },
+    "SolicitudXAreaRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "valor" :{
+          "type": "number"
+        },
+        "fecha" :{
+          "type": "string"
+        },
+        "area" : {
+          "type" : "object",
+          "properties":{
+            "nombre":{
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+    "MetricasXTutorialRespuesta": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id":{
+          "type": "number"
+        },
+        "calificacion" :{
+          "type": "number"
+        },
+        "clicks" :{
+          "type": "number"
+        },
+        "fecha" :{
+          "type": "string"
+        },
+        "tutorial" : {
+          "type" : "object",
+          "properties":{
+            "titulo":{
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+  }
+}
